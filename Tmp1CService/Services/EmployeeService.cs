@@ -1,4 +1,4 @@
-﻿using Tmp1CService.DTOs;
+﻿using Tmp1CService.DTOs.EmployeesDTOs;
 using Tmp1CService.Models;
 using Tmp1CService.Repositories.Interfaces;
 using Tmp1CService.Services.Interfaces;
