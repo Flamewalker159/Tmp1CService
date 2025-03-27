@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
-using Tmp1CService.DTOs;
+using Tmp1CService.DTOs.EmployeesDTOs;
 using Tmp1CService.Models;
 using Tmp1CService.Repositories.Interfaces;
 using Tmp1CService.Utils;
@@ -95,7 +95,8 @@ public class EmployeeRepository(AppDbContext db, IHttpClientFactory httpClient) 
                 .SetProperty(e => e.PositionId, position.Id));
     }
 
-    public async Task<HttpResponseMessage> UpdateEmployeeTo1C(Client client, string empCode, EmployeeAddDto employeeIn1C)
+    public async Task<HttpResponseMessage> UpdateEmployeeTo1C(Client client, string empCode,
+        EmployeeAddDto employeeIn1C)
     {
         var settings = JsonSettings.GetSettingsWithMonthFirstFormat();
         var url = UrlConverter.GetEmployeeUrl(client, empCode);

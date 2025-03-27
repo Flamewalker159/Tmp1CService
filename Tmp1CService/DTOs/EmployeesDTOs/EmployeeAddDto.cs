@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace Tmp1CService.DTOs;
+namespace Tmp1CService.DTOs.EmployeesDTOs;
 
 public class EmployeeAddDto
 {

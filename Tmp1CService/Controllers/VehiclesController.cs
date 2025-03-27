@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Tmp1CService.DTOs;
+using Newtonsoft.Json;
+using Tmp1CService.DTOs.VehicleDTOs;
 using Tmp1CService.Services.Interfaces;
 
 namespace Tmp1CService.Controllers;
@@ -44,7 +45,8 @@ public class VehiclesController(IVehiclesService vehiclesService) : ControllerBa
     }
     
     [HttpPut("{vehicleCode1C}")]
-    public async Task<IActionResult> UpdateVehicle1C(Guid clientId, string vehicleCode1C, VehicleUpdateDto vehicleUpdateDto)
+    public async Task<IActionResult> UpdateVehicle1C(Guid clientId, string vehicleCode1C, 
+        VehicleUpdateDto vehicleUpdateDto)
     {
         if (clientId == Guid.Empty)
             return Unauthorized(new { message = "Некорректный идентификатор клиента" });

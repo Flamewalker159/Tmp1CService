@@ -6,7 +6,8 @@ using Tmp1CService.Utils;
 
 namespace Tmp1CService.Services;
 
-public class EmployeeService(IEmployeeRepository employeeRepository, IClientRepository clientRepository) : IEmployeeService
+public class EmployeeService(IEmployeeRepository employeeRepository, IClientRepository clientRepository)
+    : IEmployeeService
 {
     public async Task<Dictionary<string, Employee1CDto>?> GetEmployeesFrom1C(Guid clientId)
     {

@@ -1,15 +1,11 @@
 ﻿using System.Net;
 using System.Text;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Moq;
 using Newtonsoft.Json;
-using Tmp1CService.Controllers;
-using Tmp1CService.DTOs;
+using Tmp1CService.DTOs.ClientDTOs;
 using Tmp1CService.Models;
 using Tmp1CService.Repositories.Interfaces;
 
@@ -38,7 +34,7 @@ public class TestClientsController : IClassFixture<CustomWebApplicationFactory<P
         var client = new ClientDto { Login = "Web", Password = "", Url1C = "http://localhost/InfoBase" };
         using StringContent clientJsonContent = new(
             JsonConvert.SerializeObject(client), Encoding.UTF8, "application/json");
-        
+
         _client.DefaultRequestHeaders.Add("X-API-KEY", "qweasd");
 
         // Act
@@ -50,19 +46,19 @@ public class TestClientsController : IClassFixture<CustomWebApplicationFactory<P
         var responseContent = await response.Content.ReadAsStringAsync();
         var returnedValue =
             JsonConvert.DeserializeObject<Dictionary<string, Guid>>(responseContent);
-        
+
         Assert.NotNull(returnedValue);
         Assert.True(returnedValue.ContainsKey("id1c"));
         var createdClient = returnedValue["id1c"];
 
         var checkClient = await _db.Clients.FirstOrDefaultAsync(u => u.Id == createdClient);
-        
+
         Assert.NotNull(checkClient);
         Assert.Equal(client.Login, checkClient.Login);
         Assert.Equal(client.Password, checkClient.Password);
         Assert.Equal(client.Url1C, checkClient.Url1C);
     }
-    
+
     [Fact]
     public async Task RegisterClient_ReturnsBadRequest_WhenClientDtoIsInvalid()
     {
@@ -70,7 +66,7 @@ public class TestClientsController : IClassFixture<CustomWebApplicationFactory<P
         var invalidClient = new ClientDto();
         using StringContent clientJsonContent = new(
             JsonConvert.SerializeObject(invalidClient), Encoding.UTF8, "application/json");
-        
+
         _client.DefaultRequestHeaders.Add("X-API-KEY", "qweasd");
 
         // Act
@@ -79,7 +75,7 @@ public class TestClientsController : IClassFixture<CustomWebApplicationFactory<P
         // Assert
         Assert.Equal(HttpStatusCode.BadRequest, result.StatusCode);
     }
-    
+
     [Fact]
     public async Task TestConnections_ReturnsOk_WhenConnectionIsSuccessful()
     {
@@ -99,7 +95,7 @@ public class TestClientsController : IClassFixture<CustomWebApplicationFactory<P
         var client1C = new ClientDto { Login = "Web", Password = "pass123", Url1C = "http://localhost/InfoBase" };
         using StringContent clientJsonContent = new(
             JsonConvert.SerializeObject(client1C), Encoding.UTF8, "application/json");
-        
+
         client.DefaultRequestHeaders.Add("X-API-KEY", "qweasd");
 
         // Act

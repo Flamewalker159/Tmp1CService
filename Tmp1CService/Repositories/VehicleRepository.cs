@@ -1,6 +1,6 @@
 ﻿using System.Text;
 using Newtonsoft.Json;
-using Tmp1CService.DTOs;
+using Tmp1CService.DTOs.VehicleDTOs;
 using Tmp1CService.Models;
 using Tmp1CService.Repositories.Interfaces;
 using Tmp1CService.Utils;

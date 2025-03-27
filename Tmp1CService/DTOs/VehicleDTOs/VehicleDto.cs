@@ -1,11 +1,9 @@
-﻿namespace Tmp1CService.DTOs;
+﻿namespace Tmp1CService.DTOs.VehicleDTOs;
 
 public class VehicleDto
 {
     public string Code1C { get; set; } = string.Empty;
-    
-    public int IdTmp { get; set; }
-    
+
     public string Name { get; set; } = string.Empty;
 
     public string LicensePlate { get; set; } = string.Empty;
@@ -31,7 +29,7 @@ public class VehicleDto
 
     public string EngineModel { get; set; } = string.Empty;
 
-    public string PowerEngineInLs { get; set; } = string.Empty;
+    public int PowerEngineInLs { get; set; }
 
-    public string PowerEngineInKvt { get; set; } = string.Empty;
+    public int PowerEngineInKvt { get; set; }
 }

@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
+using Tmp1CService.DTOs.PositionDTOs;
 
-namespace Tmp1CService.DTOs;
+namespace Tmp1CService.DTOs.EmployeesDTOs;
 
 public class Employee1CDto
 {

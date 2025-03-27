@@ -1,4 +1,4 @@
-﻿using Tmp1CService.DTOs;
+﻿using Tmp1CService.DTOs.VehicleDTOs;
 
 namespace Tmp1CService.Services.Interfaces;
 

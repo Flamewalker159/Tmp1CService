@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Moq;
 using Newtonsoft.Json;
-using Tmp1CService.DTOs;
+using Tmp1CService.DTOs.VehicleDTOs;
 using Tmp1CService.Models;
 using Tmp1CService.Repositories.Interfaces;
 
@@ -29,7 +29,8 @@ public class TestVehiclesController : IClassFixture<CustomWebApplicationFactory<
     public async Task Get_Vehicles_ReturnSuccess()
     {
         //arrange
-        var client1C = new Client { Id = Guid.NewGuid(), Login = "Web", Password = "", Url1C = "http://localhost/InfoBase" };
+        var client1C = new Client
+            { Id = Guid.NewGuid(), Login = "Web", Password = "", Url1C = "http://localhost/InfoBase" };
         await _db.Clients.AddAsync(client1C);
         await _db.SaveChangesAsync();
 
@@ -42,7 +43,7 @@ public class TestVehiclesController : IClassFixture<CustomWebApplicationFactory<
                 StatusCode = HttpStatusCode.OK,
                 Content = new StringContent(carsJson, Encoding.UTF8, "application/json")
             });
-        
+
         var client = _factory.WithWebHostBuilder(builder =>
         {
             builder.ConfigureServices(services =>
@@ -51,7 +52,7 @@ public class TestVehiclesController : IClassFixture<CustomWebApplicationFactory<
                 services.AddScoped(_ => mockRepo.Object);
             });
         }).CreateClient();
-        
+
         client.DefaultRequestHeaders.Add("X-API-KEY", "qweasd");
 
         //act
@@ -60,16 +61,16 @@ public class TestVehiclesController : IClassFixture<CustomWebApplicationFactory<
         // Assert
         Assert.Equal(HttpStatusCode.OK, result.StatusCode);
         mockRepo.Verify(repo => repo.GetVehiclesFrom1C(It.IsAny<Client>()), Times.Once());
-        
+
         var responseContent = await result.Content.ReadAsStringAsync();
         var vehicles = JsonConvert.DeserializeObject<List<VehicleDto>>(responseContent);
         var expectedVehicles = JsonConvert.DeserializeObject<List<VehicleDto1C>>(carsJson)!;
-        
+
         Assert.NotNull(vehicles);
         Assert.NotEmpty(vehicles);
-        
+
         Assert.Equal(expectedVehicles.Count, vehicles.Count);
-        
+
         // Проверка соответствия данных между ожидаемым и фактическим списком
         for (var i = 0; i < expectedVehicles.Count; i++)
         {
@@ -83,7 +84,7 @@ public class TestVehiclesController : IClassFixture<CustomWebApplicationFactory<
             Assert.Equal(expected.EngineNumber, actual.EngineNumber);
         }
     }
-    
+
     [Fact]
     public async Task Get_Vehicles_ReturnsBadRequest_WhenClientIdIsEmpty()
     {
@@ -98,7 +99,7 @@ public class TestVehiclesController : IClassFixture<CustomWebApplicationFactory<
         // Assert
         Assert.Equal(HttpStatusCode.BadRequest, result.StatusCode);
     }
-    
+
     [Fact]
     public async Task Get_Vehicles_ReturnsNotFound_WhenUserNotFound()
     {

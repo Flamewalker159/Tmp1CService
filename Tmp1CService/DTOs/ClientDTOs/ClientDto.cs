@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Tmp1CService.DTOs;
+namespace Tmp1CService.DTOs.ClientDTOs;
 
 public class ClientDto
 {

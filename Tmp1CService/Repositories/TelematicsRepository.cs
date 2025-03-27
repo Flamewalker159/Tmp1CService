@@ -9,7 +9,8 @@ namespace Tmp1CService.Repositories;
 
 public class TelematicsRepository(HttpClient httpClient) : ITelematicsRepository
 {
-    public async Task<HttpResponseMessage> SendingTelematicsData(Client client, string vehicleCode1C, TelematicsDataDto telematicsDataDto)
+    public async Task<HttpResponseMessage> SendingTelematicsData(Client client, string vehicleCode1C,
+        TelematicsDataDto telematicsDataDto)
     {
         var url = UrlConverter.GetTelematicsDataUrl(client, vehicleCode1C);
         UrlConverter.GetHeaders(client, httpClient);

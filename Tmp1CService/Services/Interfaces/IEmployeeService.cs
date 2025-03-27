@@ -1,4 +1,4 @@
-﻿using Tmp1CService.DTOs;
+﻿using Tmp1CService.DTOs.EmployeesDTOs;
 using Tmp1CService.Models;
 
 namespace Tmp1CService.Services.Interfaces;

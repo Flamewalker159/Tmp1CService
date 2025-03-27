@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using Tmp1CService.DTOs;
+using Tmp1CService.DTOs.EmployeesDTOs;
 using Tmp1CService.Services.Interfaces;
 
 namespace Tmp1CService.Controllers;

@@ -19,12 +19,12 @@ public static class UrlConverter
     {
         return $"{client.Url1C}/hs/vehicles";
     }
-    
+
     public static string GetVehicleUrl(Client client, string vehicleCode1C)
     {
         return $"{client.Url1C}/hs/vehicles/{vehicleCode1C}";
     }
-    
+
     public static string GetTelematicsDataUrl(Client client, string vehicleCode1C)
     {
         return $"{client.Url1C}/hs/telematics/{vehicleCode1C}";

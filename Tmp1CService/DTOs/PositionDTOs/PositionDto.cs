@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Tmp1CService.DTOs;
+namespace Tmp1CService.DTOs.PositionDTOs;
 
 public class PositionDto
 {

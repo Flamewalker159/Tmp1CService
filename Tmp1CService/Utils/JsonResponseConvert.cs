@@ -14,7 +14,7 @@ public static class JsonResponseConvert
         var settings = JsonSettings.GetSettingsWithDayFirstFormat();
         return JsonConvert.DeserializeObject<List<T>>(responseObject, settings)!;
     }
-    
+
     public static Dictionary<string, T> JsonDeserializeResponseToDictionary<T>(string responseObject)
     {
         var settings = JsonSettings.GetSettingsWithDayFirstFormat();

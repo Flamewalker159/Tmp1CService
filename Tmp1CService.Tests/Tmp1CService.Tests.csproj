@@ -29,7 +29,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Tmp1CService\Tmp1CService.csproj" />
+        <ProjectReference Include="..\Tmp1CService\Tmp1CService.csproj"/>
         <ProjectReference Include="..\Tmp1CService\Tmp1CService.csproj"/>
     </ItemGroup>
 
@@ -38,12 +38,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="TestData\VehiclesFrom1C.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="TestData\EmployeesFrom1C.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
+        <None Update="TestData\VehiclesFrom1C.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="TestData\EmployeesFrom1C.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
 </Project>

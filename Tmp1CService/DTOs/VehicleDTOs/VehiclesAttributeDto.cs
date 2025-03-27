@@ -1,4 +1,4 @@
-﻿namespace Tmp1CService.DTOs;
+﻿namespace Tmp1CService.DTOs.VehicleDTOs;
 
 public class VehiclesAttributeDto
 {

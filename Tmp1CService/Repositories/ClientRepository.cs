@@ -23,7 +23,7 @@ public class ClientRepository(AppDbContext db, HttpClient httpClient) : IClientR
 
         return client.Id;
     }
-    
+
     public async Task<Client?> CheckClientInDb(Guid clientId)
     {
         return await db.Clients.FirstOrDefaultAsync(c => c.Id == clientId);

@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json;
 
-namespace Tmp1CService.DTOs;
+namespace Tmp1CService.DTOs.VehicleDTOs;
 
 public class VehicleDto1C
 {
     [JsonProperty("Код")] public string Code1C { get; set; } = string.Empty;
-    
+
     [JsonProperty("Наименование")] public string Name { get; set; } = string.Empty;
 
     [JsonProperty("ГосНомер")] public string LicensePlate { get; set; } = string.Empty;
@@ -31,7 +31,7 @@ public class VehicleDto1C
 
     [JsonProperty("МодельДвигателя")] public string EngineModel { get; set; } = string.Empty;
 
-    [JsonProperty("МощностьДвигателяЛС")] public string PowerEngineInLs { get; set; } = string.Empty;
+    [JsonProperty("МощностьДвигателяЛС")] public int PowerEngineInLs { get; set; }
 
-    [JsonProperty("МощностьДвигателяКвт")] public string PowerEngineInKvt { get; set; } = string.Empty;
+    [JsonProperty("МощностьДвигателяКвт")] public int PowerEngineInKvt { get; set; }
 }
