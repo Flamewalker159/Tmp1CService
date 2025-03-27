@@ -15,11 +15,10 @@ public class TelematicsRepository(HttpClient httpClient) : ITelematicsRepository
         var url = UrlConverter.GetTelematicsDataUrl(client, vehicleCode1C);
         UrlConverter.GetHeaders(client, httpClient);
         
-        var jsonSettings = JsonSettings.GetSettingsWithMonthFirstFormat();
-        var content = new StringContent(JsonConvert.SerializeObject(telematicsDataDto), Encoding.UTF8, "application/json");
-        
-        var response = await httpClient.PostAsync(url, content);
+        var jsonSettings = JsonSettings.GetSettingsWithDayFirstFormat();
+        var content = new StringContent(JsonConvert.SerializeObject(telematicsDataDto, jsonSettings), Encoding.UTF8,
+            "application/json");
 
-        return response;
+        return await httpClient.PostAsync(url, content);
     }
 }
