@@ -1,6 +1,6 @@
 ﻿using System.Net.Http.Headers;
 using Microsoft.EntityFrameworkCore;
-using Tmp1CService.DTOs;
+using Tmp1CService.DTOs.ClientDTOs;
 using Tmp1CService.Models;
 using Tmp1CService.Repositories.Interfaces;
 using Tmp1CService.Utils;
@@ -9,8 +9,23 @@ namespace Tmp1CService.Repositories;
 
 public class ClientRepository(AppDbContext db, HttpClient httpClient) : IClientRepository
 {
+    public async Task<List<Client>> GetClients()
+    {
+        return await db.Clients.ToListAsync();
+    }
+
+    public async Task<Client?> GetClient(Guid clientId)
+    {
+        return await db.Clients.FirstOrDefaultAsync(c => c.Id == clientId);
+    }
     public async Task<Guid> RegisterClient(ClientDto clientDto)
     {
+        var existingClient = await db.Clients.FirstOrDefaultAsync(c => c.Login == clientDto.Login);
+        if (existingClient != null)
+        {
+            throw new BadHttpRequestException($"Клиент с таким логином уже существует");
+        }
+        
         var client = new Client
         {
             Id = Guid.NewGuid(),
